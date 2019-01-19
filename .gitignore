@@ -1,0 +1,15 @@
+# Don't check auto-generated stuff into git
+.config
+coverage
+dist
+node_modules
+stats.json
+.bash_history
+
+# Cruft
+.DS_Store
+npm-debug.log
+.idea
+*.log
+*lock*
+users.json

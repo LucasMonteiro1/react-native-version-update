@@ -1,0 +1,54 @@
+{
+  "name": "react-native-version-update",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "nodemon": "nodemon --exec babel-node ./src/index.js --presets stage-2",
+    "build": "babel src -d dist --presets stage-2 --copy-files",
+    "lint": "./node_modules/.bin/eslint src/",
+    "start": "echo \"Error: this command can't run without 'react-native' package\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/lucas.monteiro/react-native-version-update.git"
+  },
+  "keywords": [
+    "React",
+    "Native",
+    "Version",
+    "Update",
+    "build"
+  ],
+  "author": "Lucas Monteiro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/lucas.monteiro/react-native-version-update/issues"
+  },
+  "homepage": "https://gitlab.com/lucas.monteiro/react-native-version-update#readme",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "jsonfile": "^5.0.0",
+    "moment": "^2.23.0",
+    "node-fetch": "^2.2.0",
+    "plist": "^3.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^9.0.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^5.5.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-babel": "^5.2.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "nodemon": "^1.18.4"
+  }
+}
