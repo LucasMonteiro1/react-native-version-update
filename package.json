@@ -1,6 +1,6 @@
 {
   "name": "react-native-version-update",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/lucas.monteiro/react-native-version-update.git"
+    "url": "git+ssh://git@github.com/LucasMonteiro1/react-native-version-update.git"
   },
   "keywords": [
     "React",
@@ -27,9 +27,9 @@
   "author": "Lucas Monteiro",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/lucas.monteiro/react-native-version-update/issues"
+    "url": "https://github.com/LucasMonteiro1/react-native-version-update/issues"
   },
-  "homepage": "https://gitlab.com/lucas.monteiro/react-native-version-update#readme",
+  "homepage": "https://github.com/LucasMonteiro1/react-native-version-update#readme",
   "dependencies": {
     "chalk": "^2.4.2",
     "jsonfile": "^5.0.0",
