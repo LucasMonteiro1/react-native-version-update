@@ -1,5 +1,8 @@
 ## React Native Version Update
 
+[![npm version](https://badge.fury.io/js/react-native-version-update.svg)](https://badge.fury.io/js/react-native-version-update) [![npm downloads](https://img.shields.io/npm/dt/react-native-version-update.svg)](https://npm-stat.com/charts.html?package=react-native-version-update)  
+[![NPM](https://nodei.co/npm/react-native-version-update.png?downloads=true)](https://nodei.co/npm/react-native-version-update/)
+
 This project works together with [Version Builder](https://github.com/LucasMonteiro1/version-builder) and changes the files of the Android and iOS.
 
 ### Requirements
