@@ -36,6 +36,9 @@ const execute = async () => {
   pkg = await updatePackage(packagePath, pkg, buildNumber, updateDate);
   await setVersionIOS(basePath, pkg);
   await setVersionAndroid(basePath, pkg);
+
+  process.env['APP_VERSION'] = pkg.version;
+  process.env['APP_BUILD_NUMBER'] = pkg.buildNumber;
 };
 
 execute();
