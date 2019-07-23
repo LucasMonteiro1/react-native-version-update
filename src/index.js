@@ -4,10 +4,11 @@ import chalk from 'chalk';
 import { getPackage, updatePackage } from './package';
 import { setVersionIOS } from './ios';
 import { setVersionAndroid } from './android';
-import { getVersionNumber } from './version';
+import { getVersionNumber, nextVersionNumber } from './version';
 
 const BUILDER = '--builder=';
 const DATE = '--date';
+const NEXT = '--next';
 
 const execute = async () => {
   const packagePath = path.resolve('package.json');
@@ -19,6 +20,12 @@ const execute = async () => {
   const basePath = path.dirname(packagePath);
   const builderArg = process.argv.find((arg) => arg.includes(BUILDER));
   const updateDate = process.argv.some((arg) => arg.includes(DATE));
+  const nextArg = process.argv.some((arg) => arg.includes(NEXT));
+
+  if (nextArg) {
+    await nextVersionNumber(builderArg.slice(BUILDER.length));
+    return console.log(chalk.green('Build number updated'));
+  }
 
   let buildNumber = null;
   if (builderArg) {
