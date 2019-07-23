@@ -16,13 +16,6 @@ const execute = async () => {
   }
 
   let pkg = await getPackage(packagePath);
-  if (!pkg.dependencies['react-native']) {
-    return console.log(chalk.red('this command can\'t run without \'react-native\' package'));
-  }
-  if (!pkg.version) {
-    return console.log(chalk.red('Attribute'), chalk.red.bold('Version'), chalk.red('is required in the package.json'));
-  }
-
   const basePath = path.dirname(packagePath);
   const builderArg = process.argv.find((arg) => arg.includes(BUILDER));
   const updateDate = process.argv.some((arg) => arg.includes(DATE));
@@ -34,11 +27,16 @@ const execute = async () => {
   }
 
   pkg = await updatePackage(packagePath, pkg, buildNumber, updateDate);
-  await setVersionIOS(basePath, pkg);
-  await setVersionAndroid(basePath, pkg);
 
-  process.env['APP_VERSION'] = pkg.version;
-  process.env['APP_BUILD_NUMBER'] = pkg.buildNumber;
+  if (pkg.dependencies['react-native']) {
+    console.log(chalk.red('this command is optimized to run with \'react-native\' package'));
+
+    if (!pkg.version) {
+      return console.log(chalk.red('Attribute'), chalk.red.bold('Version'), chalk.red('is required in the package.json'));
+    }
+    await setVersionIOS(basePath, pkg);
+    await setVersionAndroid(basePath, pkg);
+  }
 };
 
 execute();
