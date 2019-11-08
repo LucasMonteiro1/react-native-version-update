@@ -10,14 +10,14 @@ export const setVersionIOS = async (basePath, pkg, useBuildNumber = false) => {
   if (!fs.existsSync(appPath)) return console.log(chalk.red('app.json not found'));
   const app = jsonfile.readFileSync(appPath);
 
-  await changeInfoPList(path.resolve(basePath, 'ios', app.name, 'Info.plist'), pkg);
-  await changeInfoPList(path.resolve(basePath, 'ios', `${app.name}-tvOS`, 'Info.plist'), pkg);
-  await changeInfoPList(path.resolve(basePath, 'ios', `${app.name}-tvOSTests`, 'Info.plist'), pkg);
-  await changeInfoPList(path.resolve(basePath, 'ios', `${app.name}Tests`, 'Info.plist'), pkg);
-  await changeInfoPList(path.resolve(basePath, 'ios', 'OneSignalNotificationServiceExtension', 'Info.plist'), pkg);
+  await changeInfoPList(path.resolve(basePath, 'ios', app.name, 'Info.plist'), pkg, useBuildNumber);
+  await changeInfoPList(path.resolve(basePath, 'ios', `${app.name}-tvOS`, 'Info.plist'), pkg, useBuildNumber);
+  await changeInfoPList(path.resolve(basePath, 'ios', `${app.name}-tvOSTests`, 'Info.plist'), pkg, useBuildNumber);
+  await changeInfoPList(path.resolve(basePath, 'ios', `${app.name}Tests`, 'Info.plist'), pkg, useBuildNumber);
+  await changeInfoPList(path.resolve(basePath, 'ios', 'OneSignalNotificationServiceExtension', 'Info.plist'), pkg, useBuildNumber);
 };
 
-const changeInfoPList = (caminhoArquivo, pkg) => {
+const changeInfoPList = (caminhoArquivo, pkg, useBuildNumber) => {
   if (!fs.existsSync(caminhoArquivo)) return;
 
   const infoPlist = plist.parse(fs.readFileSync(caminhoArquivo, 'utf8'));
