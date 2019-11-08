@@ -35,15 +35,11 @@ const execute = async () => {
 
   pkg = await updatePackage(packagePath, pkg, buildNumber, updateDate);
 
-  if (pkg.dependencies['react-native']) {
-    console.log(chalk.red('this command is optimized to run with \'react-native\' package'));
+  if (!pkg.dependencies['react-native']) return console.log(chalk.red('this command is optimized to run with \'react-native\' package'));
+  if (!pkg.version) return console.log(chalk.red('Attribute'), chalk.red.bold('Version'), chalk.red('is required in the package.json'));
 
-    if (!pkg.version) {
-      return console.log(chalk.red('Attribute'), chalk.red.bold('Version'), chalk.red('is required in the package.json'));
-    }
-    await setVersionIOS(basePath, pkg);
-    await setVersionAndroid(basePath, pkg);
-  }
+  await setVersionIOS(basePath, pkg);
+  await setVersionAndroid(basePath, pkg);
 };
 
 execute();

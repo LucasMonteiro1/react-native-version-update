@@ -13,9 +13,11 @@ export const setVersionAndroid = (basePath, pkg) => {
     fs.readFile(buildGradlePath, 'utf8', (err, gradle) => {
       if (err) throw err;
 
-      gradle = gradle.set(VERSION_NAME, '"' + pkg.version + '"');
       if (pkg.buildNumber) {
         gradle = gradle.set(VERSION_CODE, pkg.buildNumber);
+        gradle = gradle.set(VERSION_NAME, `"${pkg.version}.${pkg.buildNumber}"`);
+      } else {
+        gradle = gradle.set(VERSION_NAME, '"' + pkg.version + '"');
       }
 
       fs.writeFile(buildGradlePath, gradle, (err) => {

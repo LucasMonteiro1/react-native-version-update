@@ -21,9 +21,11 @@ const changeInfoPList = (caminhoArquivo, pkg) => {
   if (!fs.existsSync(caminhoArquivo)) return;
 
   const infoPlist = plist.parse(fs.readFileSync(caminhoArquivo, 'utf8'));
-  infoPlist.CFBundleShortVersionString = pkg.version;
   if (pkg.buildNumber) {
     infoPlist.CFBundleVersion = String(pkg.buildNumber);
+    infoPlist.CFBundleShortVersionString = `${infoPlist.CFBundleShortVersionString}.${infoPlist.CFBundleVersion}`;
+  } else {
+    infoPlist.CFBundleShortVersionString = pkg.version;
   }
 
   return new Promise((resolve, reject) => {

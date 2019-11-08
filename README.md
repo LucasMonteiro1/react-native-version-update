@@ -15,7 +15,7 @@ Inside package.json
 ```json
 "scripts": {
     ...
-    "version": "node node_modules/react-native-version-update"
+    "version": "version-update"
 }
 ```
 
@@ -31,12 +31,12 @@ Passing `--date` adds in the **package.json** of the project with **React Native
 ```json
 "scripts": {
     ...
-    "version": "node node_modules/react-native-version-update --builder=example-app"
+    "version": "version-update --builder=example-app"
 }
 ```
 ```json
 "scripts": {
     ...
-    "version": "node node_modules/react-native-version-update --date --builder=example-app"
+    "version": "version-update --date --builder=example-app"
 }
 ```
