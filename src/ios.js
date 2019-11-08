@@ -4,7 +4,7 @@ import plist from 'plist';
 import chalk from 'chalk';
 import jsonfile from 'jsonfile';
 
-export const setVersionIOS = async (basePath, pkg) => {
+export const setVersionIOS = async (basePath, pkg, useBuildNumber = false) => {
   const appPath = path.resolve(basePath, 'app.json');
 
   if (!fs.existsSync(appPath)) return console.log(chalk.red('app.json not found'));
@@ -21,11 +21,14 @@ const changeInfoPList = (caminhoArquivo, pkg) => {
   if (!fs.existsSync(caminhoArquivo)) return;
 
   const infoPlist = plist.parse(fs.readFileSync(caminhoArquivo, 'utf8'));
+  infoPlist.CFBundleShortVersionString = pkg.version;
+
   if (pkg.buildNumber) {
     infoPlist.CFBundleVersion = String(pkg.buildNumber);
-    infoPlist.CFBundleShortVersionString = `${infoPlist.CFBundleShortVersionString}.${infoPlist.CFBundleVersion}`;
-  } else {
-    infoPlist.CFBundleShortVersionString = pkg.version;
+
+    if (useBuildNumber) {
+      infoPlist.CFBundleShortVersionString = `${infoPlist.CFBundleShortVersionString}.${infoPlist.CFBundleVersion}`;
+    }
   }
 
   return new Promise((resolve, reject) => {
