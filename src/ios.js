@@ -4,20 +4,20 @@ import plist from 'plist';
 import chalk from 'chalk';
 import jsonfile from 'jsonfile';
 
-export const setVersionIOS = async (basePath, pkg, useBuildNumber = false) => {
+export const setVersionIOS = async (basePath, pkg) => {
   const appPath = path.resolve(basePath, 'app.json');
 
   if (!fs.existsSync(appPath)) return console.log(chalk.red('app.json not found'));
   const app = jsonfile.readFileSync(appPath);
 
-  await changeInfoPList(path.resolve(basePath, 'ios', app.name, 'Info.plist'), pkg, useBuildNumber);
-  await changeInfoPList(path.resolve(basePath, 'ios', `${app.name}-tvOS`, 'Info.plist'), pkg, useBuildNumber);
-  await changeInfoPList(path.resolve(basePath, 'ios', `${app.name}-tvOSTests`, 'Info.plist'), pkg, useBuildNumber);
-  await changeInfoPList(path.resolve(basePath, 'ios', `${app.name}Tests`, 'Info.plist'), pkg, useBuildNumber);
-  await changeInfoPList(path.resolve(basePath, 'ios', 'OneSignalNotificationServiceExtension', 'Info.plist'), pkg, useBuildNumber);
+  await changeInfoPList(path.resolve(basePath, 'ios', app.name, 'Info.plist'), pkg);
+  await changeInfoPList(path.resolve(basePath, 'ios', `${app.name}-tvOS`, 'Info.plist'), pkg);
+  await changeInfoPList(path.resolve(basePath, 'ios', `${app.name}-tvOSTests`, 'Info.plist'), pkg);
+  await changeInfoPList(path.resolve(basePath, 'ios', `${app.name}Tests`, 'Info.plist'), pkg);
+  await changeInfoPList(path.resolve(basePath, 'ios', 'OneSignalNotificationServiceExtension', 'Info.plist'), pkg);
 };
 
-const changeInfoPList = (caminhoArquivo, pkg, useBuildNumber) => {
+const changeInfoPList = (caminhoArquivo, pkg) => {
   if (!fs.existsSync(caminhoArquivo)) return;
 
   const infoPlist = plist.parse(fs.readFileSync(caminhoArquivo, 'utf8'));
@@ -25,10 +25,6 @@ const changeInfoPList = (caminhoArquivo, pkg, useBuildNumber) => {
 
   if (pkg.buildNumber) {
     infoPlist.CFBundleVersion = String(pkg.buildNumber);
-
-    if (useBuildNumber) {
-      infoPlist.CFBundleShortVersionString = `${infoPlist.CFBundleShortVersionString}.${infoPlist.CFBundleVersion}`;
-    }
   }
 
   return new Promise((resolve, reject) => {
