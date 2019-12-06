@@ -9,7 +9,6 @@ import { getVersionNumber, nextVersionNumber } from './version';
 const BUILDER = '--builder=';
 const DATE = '--date';
 const NEXT = '--next';
-const USE_NUMBER = '--use-number';
 
 const execute = async () => {
   const packagePath = path.resolve('package.json');
@@ -22,7 +21,6 @@ const execute = async () => {
   const builderArg = process.argv.find((arg) => arg.includes(BUILDER));
   const updateDate = process.argv.some((arg) => arg.includes(DATE));
   const nextArg = process.argv.some((arg) => arg.includes(NEXT));
-  const useBuildNumber = process.argv.some((arg) => arg.includes(USE_NUMBER));
 
   if (nextArg) {
     await nextVersionNumber(builderArg.slice(BUILDER.length));
@@ -40,8 +38,8 @@ const execute = async () => {
   if (!pkg.dependencies['react-native']) return console.log(chalk.red('this command is optimized to run with \'react-native\' package'));
   if (!pkg.version) return console.log(chalk.red('Attribute'), chalk.red.bold('Version'), chalk.red('is required in the package.json'));
 
-  await setVersionIOS(basePath, pkg, useBuildNumber);
-  await setVersionAndroid(basePath, pkg, useBuildNumber);
+  await setVersionIOS(basePath, pkg);
+  await setVersionAndroid(basePath, pkg);
 };
 
 execute();

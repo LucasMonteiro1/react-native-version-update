@@ -5,7 +5,7 @@ import chalk from 'chalk';
 const VERSION_NAME = 'versionName ';
 const VERSION_CODE = 'versionCode ';
 
-export const setVersionAndroid = (basePath, pkg, useBuildNumber = false) => {
+export const setVersionAndroid = (basePath, pkg) => {
   return new Promise((resolve, reject) => {
     const buildGradlePath = path.resolve(basePath, 'android', 'app', 'build.gradle');
     if (!fs.existsSync(buildGradlePath)) return console.log(chalk.red('build.gradle not found'));
@@ -16,10 +16,6 @@ export const setVersionAndroid = (basePath, pkg, useBuildNumber = false) => {
       gradle = gradle.set(VERSION_NAME, '"' + pkg.version + '"');
       if (pkg.buildNumber) {
         gradle = gradle.set(VERSION_CODE, pkg.buildNumber);
-
-        if (useBuildNumber) { 
-          gradle = gradle.set(VERSION_NAME, `"${pkg.version}.${pkg.buildNumber}"`);
-        }
       }
 
       fs.writeFile(buildGradlePath, gradle, (err) => {
