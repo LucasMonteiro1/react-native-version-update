@@ -1,10 +1,9 @@
 {
   "name": "react-native-version-update",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Change Android and iOS files before build",
   "main": "dist/index.js",
   "scripts": {
-    "nodemon": "nodemon --exec babel-node ./src/index.js",
     "build": "babel src -d dist --copy-files",
     "lint": "eslint src/",
     "start": "echo \"Error: this command can't run without 'react-native' package\" && exit 1",
@@ -34,26 +33,24 @@
   },
   "homepage": "https://github.com/LucasMonteiro1/react-native-version-update#readme",
   "dependencies": {
-    "chalk": "^2.4.2",
+    "chalk": "^3.0.0",
     "jsonfile": "^5.0.0",
     "moment": "^2.24.0",
     "node-fetch": "^2.6.0",
     "plist": "^3.0.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.0",
-    "@babel/core": "^7.7.2",
-    "@babel/node": "^7.7.0",
-    "@babel/preset-env": "^7.7.1",
-    "apidoc": "^0.17.7",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
     "babel-eslint": "^10.0.3",
-    "eslint": "^6.6.0",
+    "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-babel": "^5.3.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "nodemon": "^1.19.4"
+    "eslint-plugin-standard": "^4.0.1"
   }
 }
