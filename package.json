@@ -17,9 +17,6 @@
     "type": "git",
     "url": "git+ssh://git@github.com/LucasMonteiro1/react-native-version-update.git"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "keywords": [
     "React",
     "Native",
