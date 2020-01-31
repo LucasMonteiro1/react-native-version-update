@@ -1,6 +1,6 @@
 {
   "name": "react-native-version-update",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Change Android and iOS files before build",
   "main": "dist/index.js",
   "scripts": {
