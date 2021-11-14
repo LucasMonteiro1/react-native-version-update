@@ -15,6 +15,7 @@ export const setVersionIOS = async (basePath, pkg) => {
   await changeInfoPList(path.resolve(basePath, 'ios', `${app.name}-tvOSTests`, 'Info.plist'), pkg);
   await changeInfoPList(path.resolve(basePath, 'ios', `${app.name}Tests`, 'Info.plist'), pkg);
   await changeInfoPList(path.resolve(basePath, 'ios', 'OneSignalNotificationServiceExtension', 'Info.plist'), pkg);
+  await changeInfoPList(path.resolve(basePath, 'ios', 'ShareMenuExtension', 'Info.plist'), pkg);
 };
 
 const changeInfoPList = (caminhoArquivo, pkg) => {
